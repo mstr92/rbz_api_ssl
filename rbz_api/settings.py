@@ -1,0 +1,34 @@
+# Flask settings
+# FLASK_SERVER_NAME = 'localhost:8008'
+# FLASK_SERVER_NAME = '129.27.153.16:8008'
+FLASK_DEBUG = True  # Do not use debug mode in production
+
+# Flask-Restplus settings
+RESTPLUS_SWAGGER_UI_DOC_EXPANSION = 'list'
+RESTPLUS_VALIDATE = True
+RESTPLUS_MASK_SWAGGER = False
+RESTPLUS_ERROR_404_HELP = False
+
+# SQLAlchemy settings
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@db/rbz_io'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+APPKEY = 'ABCD1234'
+API_KEY_TMDB = '4011e631409cb9aad814f2e2a03df031'
+CRYPTO_KEY = 'JLByFgMGsjMS9KcWj-ZQHpVG462MVMHTGTpBWIILJo0='
+
+# Engine
+ENGINE_HOST = '129.27.153.16'
+ENGINE_PORT = 8008
+
+#RabbitMQ
+RABBIT_HOST = "rabbit1"
+RABBIT_PORT = 5672
+
+#Wait to get direct engine response
+SECONDS_TO_WAIT_FOR_RESPONSE = 5
+EXPIRE_DAYS = 7
+
+#Input Settings:
+MIN_YEAR = 1980
+MAX_YEAR = 2030

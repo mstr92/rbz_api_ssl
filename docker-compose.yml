@@ -1,0 +1,47 @@
+db:
+  image: mysql:5.6
+  ports:
+    - "3307:3306"
+  restart: always
+  hostname: "db"
+  environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_USER=rbz_api_user
+     - MYSQL_PASS=rbz_api_pw
+     - MYSQL_DATABASE=rbz_api
+  volumes:
+    - ./mysql:/var/lib/mysql
+rabbitmq:
+  image: rabbitmq:3-management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+  hostname: "rabbit1"
+api:
+  restart: always
+  build: ./rbz_api/
+  expose:
+    - 5000
+  volumes:
+    - .:/api
+  links:
+    - db
+    - rabbitmq
+  command: gunicorn --log-level debug --name app -b :5000 --reload rbz_api.wsgi:app
+nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "8008:443"
+    links:
+      - api
+celery:
+  build: ./rbz_api/
+  volumes:
+    - .:/api
+  environment:
+    C_FORCE_ROOT: "True"
+  links:
+    - db
+    - rabbitmq
+  command: celery -A rbz_api.tasks.tasks worker -Q movies -B -l INFO

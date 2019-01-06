@@ -1,0 +1,12 @@
+celery==3.1.23
+flask
+Flask-RESTful==0.3.6
+Flask-SQLAlchemy==2.1
+flask_restplus
+mysql-python
+sqlalchemy
+PyMySQL
+pyOpenSSL
+requests
+cryptography
+gunicorn
