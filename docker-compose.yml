@@ -8,7 +8,7 @@ db:
      - MYSQL_ROOT_PASSWORD=root
      - MYSQL_USER=rbz_api_user
      - MYSQL_PASS=rbz_api_pw
-     - MYSQL_DATABASE=rbz_api
+     - MYSQL_DATABASE=rbz_io
   volumes:
     - ./mysql:/var/lib/mysql
 rabbitmq:
