@@ -110,10 +110,10 @@ class DatabaseGenre(Resource):
         return jsonResult, 201
 
 @ns.route('/movie/<string:text>')
-@require_appkey
 class DatabaseMovie(Resource):
 
     @api.response(201, 'Object found')
+    @require_appkey
     def get(self, text):
         """
         Return a list of movies corresponding to the given text
@@ -124,10 +124,10 @@ class DatabaseMovie(Resource):
         return jsonResult, 201
 
 @ns.route('/person/<string:text>')
-@require_appkey
 class DatabasePerson(Resource):
 
     @api.response(201, 'Object found')
+    @require_appkey
     def get(self, text):
         """
         Return a list of persons corresponding to the given text
@@ -138,10 +138,10 @@ class DatabasePerson(Resource):
         return jsonResult, 201
 
 @ns.route('/movie/details/<string:imdb_id>')
-@require_appkey
 class DatabasePerson(Resource):
 
     @api.response(201, 'Object found')
+    @require_appkey
     def get(self, imdb_id):
         """
         Return a movie poster from TheMovieDB with a given IMDB-ID
