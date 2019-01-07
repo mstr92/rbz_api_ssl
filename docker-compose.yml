@@ -27,7 +27,7 @@ api:
   links:
     - db
     - rabbitmq
-  command: gunicorn --log-level debug --name app -b :5000 --reload rbz_api.wsgi:app
+  command: gunicorn --name app -b :5000 --reload rbz_api.wsgi:app
 nginx:
     restart: always
     build: ./nginx/
