@@ -30,7 +30,7 @@ def require_appkey(view_function):
 
 @ns.route('/uuid/<string:uuid>')
 class DatabaseUUID(Resource):
-
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'UUID inserted')
     @api.response(412, 'UUID already in database')
     @require_appkey
@@ -44,7 +44,7 @@ class DatabaseUUID(Resource):
 
 @ns.route('/user')
 class DatabaseUser(Resource):
-
+    @api.header('key', 'API-Key', required=True)
     @api.expect(user, validate=False)
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
@@ -64,7 +64,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/user/deviceId')
 class DatabaseUser(Resource):
-
+    @api.header('key', 'API-Key', required=True)
     @api.expect(device_user, validate=False)
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
@@ -83,7 +83,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/user/<string:username>')
 class DatabaseUser(Resource):
-
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
     @require_appkey
@@ -101,6 +101,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/password/<string:username>/<string:password>')
 class DatabaseUser(Resource):
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Password correct!')
     @api.response(410, 'Password incorrect!')
     @api.response(411, 'User does not exist')
@@ -117,7 +118,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/backup')
 class DatabaseUser(Resource):
-
+    @api.header('key', 'API-Key', required=True)
     @api.expect(backup, validate=False)
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
@@ -136,6 +137,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/backup/history/<int:user_id>')
 class DatabaseUser(Resource):
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Entry exists')
     @require_appkey
     def get(self, user_id):
@@ -148,6 +150,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/backup/favourite/<int:user_id>')
 class DatabaseUser(Resource):
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Entry exists')
     @require_appkey
     def get(self, user_id):
@@ -160,6 +163,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/backup/rating/<int:user_id>')
 class DatabaseUser(Resource):
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Entry exists')
     @require_appkey
     def get(self, user_id):
@@ -172,6 +176,7 @@ class DatabaseUser(Resource):
 
 @ns.route('/backup/dates/<int:user_id>')
 class DatabaseUser(Resource):
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Entry exists')
     @require_appkey
     def get(self, user_id):

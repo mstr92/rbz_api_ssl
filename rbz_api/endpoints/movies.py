@@ -98,6 +98,7 @@ class BotResponse(Resource):
 @ns.route('/genre/<string:text>')
 class DatabaseGenre(Resource):
 
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Object found')
     @require_appkey
     def get(self, text):
@@ -112,6 +113,7 @@ class DatabaseGenre(Resource):
 @ns.route('/movie/<string:text>')
 class DatabaseMovie(Resource):
 
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Object found')
     @require_appkey
     def get(self, text):
@@ -126,6 +128,7 @@ class DatabaseMovie(Resource):
 @ns.route('/person/<string:text>')
 class DatabasePerson(Resource):
 
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Object found')
     @require_appkey
     def get(self, text):
@@ -140,6 +143,7 @@ class DatabasePerson(Resource):
 @ns.route('/movie/details/<string:imdb_id>')
 class DatabasePerson(Resource):
 
+    @api.header('key', 'API-Key', required=True)
     @api.response(201, 'Object found')
     @require_appkey
     def get(self, imdb_id):
