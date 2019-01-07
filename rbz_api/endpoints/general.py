@@ -33,6 +33,7 @@ class DatabaseUUID(Resource):
 
     @api.response(201, 'UUID inserted')
     @api.response(412, 'UUID already in database')
+    @require_appkey
     def post(self, uuid):
         """
         Insert new Device with given UUID
@@ -48,6 +49,7 @@ class DatabaseUser(Resource):
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
     @api.response(410, 'Error: Username already in use!')
+    @require_appkey
     def post(self):
         """
         Insert new User
@@ -67,6 +69,7 @@ class DatabaseUser(Resource):
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
     @api.response(410, 'Error: Username already in use!')
+    @require_appkey
     def post(self):
         """
         Insert new User
@@ -83,6 +86,7 @@ class DatabaseUser(Resource):
 
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
+    @require_appkey
     def get(self, username):
         """
         Get User
@@ -100,6 +104,7 @@ class DatabaseUser(Resource):
     @api.response(201, 'Password correct!')
     @api.response(410, 'Password incorrect!')
     @api.response(411, 'User does not exist')
+    @require_appkey
     def get(self, username, password):
         """
         Check Password
@@ -116,6 +121,7 @@ class DatabaseUser(Resource):
     @api.expect(backup, validate=False)
     @api.response(201, 'User registered in database')
     @api.response(401, 'Error: User not registered!')
+    @require_appkey
     def post(self):
         """
         Insert Backup Objects for user
@@ -131,6 +137,7 @@ class DatabaseUser(Resource):
 @ns.route('/backup/history/<int:user_id>')
 class DatabaseUser(Resource):
     @api.response(201, 'Entry exists')
+    @require_appkey
     def get(self, user_id):
         modelObject = get_backup(user_id)
         if modelObject != None:
@@ -142,6 +149,7 @@ class DatabaseUser(Resource):
 @ns.route('/backup/favourite/<int:user_id>')
 class DatabaseUser(Resource):
     @api.response(201, 'Entry exists')
+    @require_appkey
     def get(self, user_id):
         modelObject = get_backup(user_id)
         if modelObject != None:
@@ -153,6 +161,7 @@ class DatabaseUser(Resource):
 @ns.route('/backup/rating/<int:user_id>')
 class DatabaseUser(Resource):
     @api.response(201, 'Entry exists')
+    @require_appkey
     def get(self, user_id):
         modelObject = get_backup(user_id)
         if modelObject != None:
@@ -164,6 +173,7 @@ class DatabaseUser(Resource):
 @ns.route('/backup/dates/<int:user_id>')
 class DatabaseUser(Resource):
     @api.response(201, 'Entry exists')
+    @require_appkey
     def get(self, user_id):
         modelObject = get_backup(user_id)
         if modelObject != None:

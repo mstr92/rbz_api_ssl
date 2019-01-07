@@ -99,6 +99,7 @@ class BotResponse(Resource):
 class DatabaseGenre(Resource):
 
     @api.response(201, 'Object found')
+    @require_appkey
     def get(self, text):
         """
         Return a list of genres corresponding to the given text
@@ -109,6 +110,7 @@ class DatabaseGenre(Resource):
         return jsonResult, 201
 
 @ns.route('/movie/<string:text>')
+@require_appkey
 class DatabaseMovie(Resource):
 
     @api.response(201, 'Object found')
@@ -122,6 +124,7 @@ class DatabaseMovie(Resource):
         return jsonResult, 201
 
 @ns.route('/person/<string:text>')
+@require_appkey
 class DatabasePerson(Resource):
 
     @api.response(201, 'Object found')
@@ -135,6 +138,7 @@ class DatabasePerson(Resource):
         return jsonResult, 201
 
 @ns.route('/movie/details/<string:imdb_id>')
+@require_appkey
 class DatabasePerson(Resource):
 
     @api.response(201, 'Object found')
