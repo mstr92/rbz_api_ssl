@@ -20,8 +20,8 @@ class CalculateAndSaveResponse(Task):
 
     def run(self, id, request, onesignal_id):
         print("sent request")
-        # result = send_request_to_movie_engine(request)
-        return None #result
+        result = send_request_to_movie_engine(request)
+        return result
 
     def on_success(self, retval, task_id, args, kwargs):
         print('SUCCESS')
