@@ -32,7 +32,7 @@ def require_appkey(view_function):
 class BotRequest(Resource):
 
     @api.header('key', 'API-Key', required=True)
-    @api.expect(movie)
+    @api.expect(movie, validate=False)
     @require_appkey
     def post(self):
         """
