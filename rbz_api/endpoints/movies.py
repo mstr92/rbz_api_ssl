@@ -50,22 +50,23 @@ class BotRequest(Resource):
         print("Get ID")
         id = create_entry(json.dumps(data), parentResponse, parentId)
         # Check if response has to be calculated else return response
-        if parentResponse is None:
-
-            CalculateAndSaveResponse.delay(id, json.dumps(data), data['user_id'])
-
-            # Check if response is calculated after 5 seconds
-            # If true, return calculated response
-            # else return id
-            time.sleep(SECONDS_TO_WAIT_FOR_RESPONSE)
-            modelObject = get_entry(id)
-
-            if modelObject.response == None:
-                return Response(response=str(id), mimetype='text/plain')
-            else:
-                return Response(response=str(modelObject.response), mimetype='text/plain')
-        else:
-            return Response(parentResponse, mimetype='text/plain')
+        # if parentResponse is None:
+        #
+        #     CalculateAndSaveResponse.delay(id, json.dumps(data), data['user_id'])
+        #
+        #     # Check if response is calculated after 5 seconds
+        #     # If true, return calculated response
+        #     # else return id
+        #     time.sleep(SECONDS_TO_WAIT_FOR_RESPONSE)
+        #     modelObject = get_entry(id)
+        #
+        #     if modelObject.response == None:
+        #         return Response(response=str(id), mimetype='text/plain')
+        #     else:
+        #         return Response(response=str(modelObject.response), mimetype='text/plain')
+        # else:
+        #     return Response(parentResponse, mimetype='text/plain')
+        return "", 201
 
 
 
