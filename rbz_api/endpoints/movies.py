@@ -69,11 +69,10 @@ class BotRequest(Resource):
                 return Response(response=str(id), mimetype='text/plain', status=202)
             else:
                 # return Response(response=str(modelObject.response), mimetype='text/plain', status=201)
-                return Response(response=jsonify(modelObject), mimetype='text/plain', status=201)
+                data = {'id': id, 'response': modelObject.response}
+                return Response(response=json.dumps(data), mimetype='text/plain', status=201)
         else:
             data = {'id': id, 'response':parentResponse}
-            test = jsonify(data)
-            #return Response(parentResponse, mimetype='text/plain', status=201)
             return Response(response=json.dumps(data), mimetype='text/plain', status=201)
 
 
