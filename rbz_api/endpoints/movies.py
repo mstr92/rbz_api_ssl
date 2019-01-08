@@ -72,7 +72,7 @@ class BotRequest(Resource):
                 data = {'id': id, 'response': modelObject.response}
                 return Response(response=json.dumps(data), mimetype='text/plain', status=201)
         else:
-            data = {'id': id, 'response':json.loads(parentResponse)}
+            data = {'id': id, 'response':parentResponse}
             return Response(response=json.dumps(data), mimetype='text/plain', status=201)
 
 
