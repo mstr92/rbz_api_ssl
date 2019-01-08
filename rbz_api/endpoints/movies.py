@@ -66,12 +66,12 @@ class BotRequest(Resource):
             modelObject = get_entry(id)
 
             if modelObject.response == None:
-                return Response(response=str(id), mimetype='text/plain')
+                return Response(response=str(id), mimetype='text/plain', status=202)
             else:
-                return Response(response=str(modelObject.response), mimetype='text/plain')
+                return Response(response=str(modelObject.response), mimetype='text/plain', status=201)
         else:
-            return Response(parentResponse, mimetype='text/plain')
-        return "", 201
+            return Response(parentResponse, mimetype='text/plain', status=201)
+
 
 
 
