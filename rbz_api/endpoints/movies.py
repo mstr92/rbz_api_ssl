@@ -52,7 +52,8 @@ class BotRequest(Resource):
         # Check if response has to be calculated else return response
         if parentResponse is None:
 
-            CalculateAndSaveResponse.delay(id, json.dumps(data), data['user_id'])
+            # CalculateAndSaveResponse.delay(id, json.dumps(data), data['user_id'])
+            CalculateAndSaveResponse.delay(id, json.dumps(data), "12")
 
             # Check if response is calculated after 5 seconds
             # If true, return calculated response

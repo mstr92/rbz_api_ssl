@@ -40,7 +40,7 @@ def check_if_entry_exists(data):
 def get_entry(id):
     try:
         db.session.commit()
-        return DataModel.query.filter(DataModel.id == id).one()
+        return DataModel.query.filter(DataModel.id == id).first()
     except exc.SQLAlchemyError:
         print("No entry in Database")
         return None
