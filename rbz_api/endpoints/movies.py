@@ -68,7 +68,6 @@ class BotRequest(Resource):
             if modelObject.response == None:
                 return Response(response=str(id), mimetype='text/plain', status=202)
             else:
-                # return Response(response=str(modelObject.response), mimetype='text/plain', status=201)
                 data = {'id': id, 'response': modelObject.response}
                 return Response(response=json.dumps(data), mimetype='text/plain', status=201)
         else:
@@ -101,7 +100,8 @@ class BotResponse(Resource):
         if modelObject.response == None:
             return None, 405
         else:
-            return modelObject.response, 201
+            data = {'id': id, 'response': modelObject.response}
+            return json.dumps(data), 201
 
 
 @ns.route('/genre/<string:text>')
