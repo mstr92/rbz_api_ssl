@@ -28,13 +28,13 @@ def require_appkey(view_function):
     return decorated_function
 
 
-@ns.route('/')
+@ns.route('/<string:push_id>')
 class BotRequest(Resource):
 
     @api.header('key', 'API-Key', required=True)
     @api.expect(movie, validate=False)
     @require_appkey
-    def post(self):
+    def post(self, push_id):
         """
         Make a request to Movie Recommendation Server
         """
@@ -52,10 +52,10 @@ class BotRequest(Resource):
         # Check if response has to be calculated else return response
         if parentResponse is None:
 
-            if(data['user_id'] == None):
+            if(push_id == None):
                 onesignal_id = ''
             else:
-                onesignal_id = data['user_id']
+                onesignal_id = push_id
 
             CalculateAndSaveResponse.delay(id, json.dumps(data), onesignal_id)
 
