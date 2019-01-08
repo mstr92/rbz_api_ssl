@@ -74,7 +74,7 @@ class BotRequest(Resource):
             data = {'id': id, 'response':parentResponse}
             test = jsonify(data)
             #return Response(parentResponse, mimetype='text/plain', status=201)
-            return Response(test, mimetype='text/plain', status=201)
+            return Response(response=json.dumps(data), mimetype='text/plain', status=201)
 
 
 
