@@ -18,7 +18,7 @@ celery_app = Celery('tasks', backend='amqp', broker=BROKER_URL)
 class CalculateAndSaveResponse(Task):
     queue = 'movies'
 
-    def run(self, id, request):
+    def run(self, id, request, onesignal_id):
         print("sent request")
         # result = send_request_to_movie_engine(request)
         return None #result
