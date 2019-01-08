@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from sqlalchemy import exc, create_engine, MetaData, Table, Column, Integer, String, TIMESTAMP, text
 from rbz_api.settings import SQLALCHEMY_DATABASE_URI, EXPIRE_DAYS, CRYPTO_KEY
 from cryptography.fernet import Fernet
-
+from rbz_api.helpers.push_notification import notify_user
 
 ###################################################################################
 # API - Functions
@@ -46,10 +46,12 @@ def get_entry(id):
         return None
 
 
-def set_response(id, retval, retry):
+def set_response(id, retval, retry, user_id):
     try:
         engine = create_engine(SQLALCHEMY_DATABASE_URI)
         engine.execute("UPDATE rbz_api SET Response = %s WHERE Id = %s", (retval, str(id)))
+        notify_user(user_id, 'Movie recommendation',
+                    'Calculation for you recommendation is finished!', str(id))
 
     except exc.SQLAlchemyError(e):
         print("No entry in Database with ID: " + str(id))

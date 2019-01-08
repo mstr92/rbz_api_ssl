@@ -18,6 +18,7 @@ movie = api.model('Movies', {
     'neg_year_to': fields.List(fields.Integer(min=MIN_YEAR, max=MAX_YEAR, description='List of negative years to')),
     'pos_year_to': fields.List(fields.Integer(min=MIN_YEAR, max=MAX_YEAR, description='List of positive years to')),
     'length': fields.Integer(description='Total number of results'),
+    'user_id': fields.String(description='OneSignal User Id'),
     # 'approach': fields.Integer(description='Total number of results'),
 })
 

@@ -12,6 +12,7 @@ from rbz_api.database.db_functions import *
 from flask import Response
 from functools import wraps
 
+
 log = logging.getLogger(__name__)
 ns = api.namespace('rbz/general', description='General Functions')
 

@@ -24,7 +24,7 @@ class CalculateAndSaveResponse(Task):
 
     def on_success(self, retval, task_id, args, kwargs):
         print('SUCCESS')
-        set_response(args[0], retval, True)
+        set_response(args[0], retval, True, args[2])
 
     def on_failure(self, exc, task_id, args, kwargs, einfo):
         print("ERROR: No Response calculated!")
