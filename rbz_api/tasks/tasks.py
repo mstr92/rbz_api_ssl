@@ -19,6 +19,7 @@ class CalculateAndSaveResponse(Task):
     queue = 'movies'
 
     def run(self, id, request):
+        print("sent request")
         result = send_request_to_movie_engine(request)
         return result
 
