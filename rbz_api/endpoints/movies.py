@@ -100,8 +100,7 @@ class BotResponse(Resource):
         if modelObject.response == None:
             return None, 405
         else:
-            data = {'id': id, 'response': modelObject.response}
-            return json.dumps(data), 201
+            return modelObject.response, 201
 
 
 @ns.route('/genre/<string:text>')
