@@ -26,7 +26,7 @@ RABBIT_HOST = "rabbit1"
 RABBIT_PORT = 5672
 
 #Wait to get direct engine response
-SECONDS_TO_WAIT_FOR_RESPONSE = 5
+SECONDS_TO_WAIT_FOR_RESPONSE = 2
 EXPIRE_DAYS = 7
 
 #Input Settings:
