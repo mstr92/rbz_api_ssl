@@ -45,12 +45,12 @@ class BotRequest(Resource):
 
         # Create new database entry and get entry id
         # If parent exists, the parentId and the parentResponse get set
-        if parentResponse is None:
+        if parentResponse is None or parentResponse == "ERROR CALCULATING RECOMMENDATIONS!":
             parentId = None
-        print("Get ID")
+
         id = create_entry(json.dumps(data), parentResponse, parentId)
         # Check if response has to be calculated else return response
-        if parentResponse is None:
+        if parentId is None:
 
             if(push_id == None):
                 onesignal_id = ''
