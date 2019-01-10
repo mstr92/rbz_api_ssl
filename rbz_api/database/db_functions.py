@@ -109,10 +109,10 @@ def set_vote(device_uuid, username, recommendation_id, movie_id, vote):
         if userModel != None:
             id = userModel.id
 
-        voteModel = VoteModel.query.filter(VoteModel.device_uuid == device_uuid).first()
+        voteModel = VoteModel.query.filter(VoteModel.device_uuid == device_uuid, VoteModel.user_id == id).first()
 
         if voteModel == None:
-            post = VoteModel(device_uuid, username, recommendation_id, movie_id, vote)
+            post = VoteModel(device_uuid, id, recommendation_id, movie_id, vote)
             db.session.add(post)
             db.session.flush()
             db.session.commit()
