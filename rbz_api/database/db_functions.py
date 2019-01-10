@@ -124,7 +124,7 @@ def set_vote(device_uuid, username, recommendation_id, movie_id, vote):
 
     except exc.SQLAlchemyError:
         print("No entry in Database")
-        return None
+        return 401
 
 ###################################################################################
 # General Functions
