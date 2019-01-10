@@ -102,9 +102,15 @@ def get_person(text):
         print("No entry in Database")
         return None
 
-def set_vote(device_uuid, user_id, recommendation_id, movie_id, vote):
+def set_vote(device_uuid, username, recommendation_id, movie_id, vote):
     try:
-        voteModel = VoteModel.query.filter(VoteModel.device_uuid == device_uuid, VoteModel.user_id == user_id).first()
+        userModel = UserModel.query.filter(UserModel.username == username).first()
+        id = None
+        if userModel != None:
+            id = userModel.id
+
+        voteModel = VoteModel.query.filter(VoteModel.device_uuid == device_uuid, VoteModel.user_id == id).first()
+
         if voteModel == None:
             post = VoteModel(device_uuid, user_id, recommendation_id, movie_id, vote)
             db.session.add(post)

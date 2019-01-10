@@ -175,10 +175,10 @@ class DatabaseUUID(Resource):
         """
         data = request.json
         uuid = data['device_uuid']
-        user_id = data['user_id']
+        username = data['username']
         recommendation_id = data['recommendation_id']
         movie_id = data['movie_id']
         vote = data['vote']
 
-        modelObject = set_vote(uuid, user_id, recommendation_id, movie_id, vote)
+        modelObject = set_vote(uuid, username, recommendation_id, movie_id, vote)
         return "", modelObject

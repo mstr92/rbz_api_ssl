@@ -41,7 +41,7 @@ device_user = api.model('Device_User', {
 })
 vote = api.model('Vote', {
     'device_uuid': fields.String(description='Device_id'),
-    'user_id': fields.Integer(description='user_id'),
+    'username': fields.Integer(description='username'),
     'movie_id': fields.Integer(description='movie_id'),
     'recommendation_id': fields.Integer(description='recommendation_id'),
     'vote': fields.Integer(description='vote'),
