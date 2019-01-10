@@ -4,7 +4,7 @@
 import time
 import logging
 from rbz_api.database import db
-from rbz_api.database.model import DataModel, DeviceModel, UserModel, BackupModel
+from rbz_api.database.model import DataModel, DeviceModel, UserModel, BackupModel, VoteModel
 from datetime import datetime, timedelta
 from sqlalchemy import exc, create_engine, MetaData, Table, Column, Integer, String, TIMESTAMP, text
 from rbz_api.settings import SQLALCHEMY_DATABASE_URI, EXPIRE_DAYS, CRYPTO_KEY
@@ -102,6 +102,23 @@ def get_person(text):
         print("No entry in Database")
         return None
 
+def set_vote(device_uuid, user_id, recommendation_id, movie_id, vote):
+    try:
+        voteModel = VoteModel.query.filter(VoteModel.device_uuid == device_uuid, VoteModel.user_id == user_id).first()
+        if voteModel == None:
+            post = VoteModel(device_uuid, user_id, recommendation_id, movie_id, vote)
+            db.session.add(post)
+            db.session.flush()
+            db.session.commit()
+            return 201
+        else:
+            voteModel.vote = vote
+            db.session.commit()
+            return 202
+
+    except exc.SQLAlchemyError:
+        print("No entry in Database")
+        return None
 
 ###################################################################################
 # General Functions

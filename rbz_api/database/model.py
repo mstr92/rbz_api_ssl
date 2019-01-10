@@ -56,3 +56,19 @@ class BackupModel(db.Model):
         self.favourite_last = favourite_last
         self.rating_last = rating_last
         self.history_last = history_last
+
+class VoteModel(db.Model):
+    __tablename__ = "recommendation_vote"
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column('user_id', db.Integer)
+    device_uuid = db.Column('device_uuid', db.String)
+    recommendation_id = db.Column('recommendation_id', db.Integer)
+    movie_id = db.Column('movie_id', db.Integer)
+    vote = db.Column('vote', db.Integer)
+
+    def __init__(self, user_id, device_uuid, recommendation_id, movie_id, vote):
+        self.user_id = user_id
+        self.device_uuid = device_uuid
+        self.recommendation_id = recommendation_id
+        self.movie_id = movie_id
+        self.vote = vote

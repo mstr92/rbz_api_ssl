@@ -4,7 +4,7 @@ import requests
 
 from rbz_api.helpers.restplus import api
 from flask_restplus import Resource
-from rbz_api.helpers.serializers import movie
+from rbz_api.helpers.serializers import movie, vote
 from flask import request, abort, jsonify
 from rbz_api.settings import APPKEY, SECONDS_TO_WAIT_FOR_RESPONSE, API_KEY_TMDB
 from rbz_api.tasks.tasks import *
@@ -161,3 +161,24 @@ class DatabasePerson(Resource):
         LINK = 'https://api.themoviedb.org/3/find/' + imdb_id + '?api_key=' + API_KEY_TMDB + '&external_source=imdb_id'
         r = requests.get(LINK)
         return json.loads(r.text),201
+
+@ns.route('/movie/vote')
+class DatabaseUUID(Resource):
+    @api.header('key', 'API-Key', required=True)
+    @api.response(201, 'Vote inserted')
+    @api.response(202, 'Vote updated')
+    @api.expect(vote, validate=False)
+    @require_appkey
+    def post(self):
+        """
+        Insert new Device with given UUID
+        """
+        data = request.json
+        uuid = data['device_uuid']
+        user_id = data['user_id']
+        recommendation_id = data['recommendation_id']
+        movie_id = data['movie_id']
+        vote = data['vote']
+
+        modelObject = set_vote(uuid, user_id, recommendation_id, movie_id, vote)
+        return "", modelObject
