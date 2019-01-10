@@ -58,7 +58,7 @@ class BackupModel(db.Model):
         self.history_last = history_last
 
 class VoteModel(db.Model):
-    __tablename__ = "recommendation_vote"
+    __tablename__ = "recommendation_votes"
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column('user_id', db.Integer)
     device_uuid = db.Column('device_uuid', db.String)
