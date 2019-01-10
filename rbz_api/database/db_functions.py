@@ -104,11 +104,11 @@ def get_person(text):
 
 def set_vote(device_uuid, username, recommendation_id, movie_id, vote):
     try:
-        userModel = UserModel.query.filter(UserModel.username == username).first()
-        id = None
-        if userModel != None:
-            id = userModel.id
-
+        # userModel = UserModel.query.filter(UserModel.username == username).first()
+        # id = None
+        # if userModel != None:
+        #     id = userModel.id
+        #
         voteModel = VoteModel.query.filter(VoteModel.device_uuid == device_uuid).first()
 
         # if voteModel == None:
