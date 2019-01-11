@@ -33,7 +33,7 @@ def require_appkey(view_function):
 class DatabaseUUID(Resource):
     @api.header('key', 'API-Key', required=True)
     @api.response(201, 'UUID inserted')
-    @api.response(412, 'UUID already in database')
+    @api.response(202, 'UUID already in database')
     @require_appkey
     def post(self, uuid):
         """

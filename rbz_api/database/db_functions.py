@@ -139,7 +139,7 @@ def set_uuid(uuid):
             db.session.commit()
             return 201
         else:
-            return 412
+            return 202
 
     except exc.SQLAlchemyError as e:
         print("No entry in Database")
