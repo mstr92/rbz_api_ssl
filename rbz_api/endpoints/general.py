@@ -60,6 +60,7 @@ class DatabaseUser(Resource):
         email = data['email']
         password = data['password']
 
+
         modelObject = set_user(username, email, password)
         return "", modelObject
 
