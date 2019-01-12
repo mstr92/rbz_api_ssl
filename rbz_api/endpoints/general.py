@@ -185,6 +185,5 @@ class DatabaseUser(Resource):
         modelObject = get_backup(user_id)
         if modelObject != None:
             return str(modelObject.rating_last)+"," +str(modelObject.history_last)+","+str(modelObject.favourite_last), 201
-
         else:
-            return "", 401
+            return "", 202
