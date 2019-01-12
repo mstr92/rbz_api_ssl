@@ -50,7 +50,8 @@ def set_response(id, retval, retry, user_id):
     try:
         engine = create_engine(SQLALCHEMY_DATABASE_URI)
         engine.execute("UPDATE rbz_api SET Response = %s WHERE Id = %s", (retval, str(id)))
-        notify_user(user_id, 'Movie recommendation','Calculation for you recommendation is finished!', str(id))
+        if retry:
+            notify_user(user_id, 'Movie recommendation','Calculation for you recommendation is finished!', str(id))
 
     except exc.SQLAlchemyError(e):
         print("No entry in Database with ID: " + str(id))
