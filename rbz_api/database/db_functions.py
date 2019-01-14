@@ -46,12 +46,16 @@ def get_entry(id):
         return None
 
 
-def set_response(id, retval, retry, user_id):
+def set_response(id, retval, retry, user_id, show_more):
     try:
         engine = create_engine(SQLALCHEMY_DATABASE_URI)
         engine.execute("UPDATE rbz_api SET Response = %s WHERE Id = %s", (retval, str(id)))
+        if show_more:
+            push_text = 'Calculation for you recommendation is finished!';
+        else:
+            push_text = 'More results are now available!'
         if retry:
-            notify_user(user_id, 'Movie recommendation','Calculation for you recommendation is finished!', str(id))
+            notify_user(user_id, 'Movie recommendation', push_text, str(id))
 
     except exc.SQLAlchemyError(e):
         print("No entry in Database with ID: " + str(id))

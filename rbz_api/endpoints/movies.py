@@ -28,17 +28,22 @@ def require_appkey(view_function):
     return decorated_function
 
 
-@ns.route('/<string:push_id>')
+@ns.route('/<string:push_id>/<int:show_more>')
 class BotRequest(Resource):
 
     @api.header('key', 'API-Key', required=True)
     @api.expect(movie, validate=False)
     @require_appkey
-    def post(self, push_id):
+    def post(self, push_id, show_more):
         """
         Make a request to Movie Recommendation Server
         """
         data = request.json
+        if show_more == 0:
+            show_more_flag = False
+        else:
+            show_more_flag = True
+
 
         # Check if parent exists in database
         parentId, parentResponse = check_if_entry_exists(json.dumps(data))
@@ -57,7 +62,7 @@ class BotRequest(Resource):
             else:
                 onesignal_id = push_id
 
-            CalculateAndSaveResponse.delay(id, json.dumps(data), onesignal_id)
+            CalculateAndSaveResponse.delay(id, json.dumps(data), onesignal_id, show_more_flag)
 
             # Check if response is calculated after 5 seconds
             # If true, return calculated response

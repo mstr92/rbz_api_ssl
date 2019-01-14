@@ -18,14 +18,14 @@ celery_app = Celery('tasks', backend='amqp', broker=BROKER_URL)
 class CalculateAndSaveResponse(Task):
     queue = 'movies'
 
-    def run(self, id, request, onesignal_id):
+    def run(self, id, request, onesignal_id, show_more):
         print("sent request")
         result = send_request_to_movie_engine(request)
         return result
 
     def on_success(self, retval, task_id, args, kwargs):
         print('SUCCESS')
-        set_response(args[0], retval, True, args[2])
+        set_response(args[0], retval, True, args[2], args[3])
 
     def on_failure(self, exc, task_id, args, kwargs, einfo):
         print("ERROR: No Response calculated!")
