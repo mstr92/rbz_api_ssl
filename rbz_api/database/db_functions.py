@@ -51,9 +51,9 @@ def set_response(id, retval, retry, user_id, show_more):
         engine = create_engine(SQLALCHEMY_DATABASE_URI)
         engine.execute("UPDATE rbz_api SET Response = %s WHERE Id = %s", (retval, str(id)))
         if show_more:
-            push_text = 'Calculation for you recommendation is finished!';
-        else:
             push_text = 'More results are now available!'
+        else:
+            push_text = 'Calculation for you recommendation is finished!'
         if retry:
             notify_user(user_id, 'Movie recommendation', push_text, str(id))
 
