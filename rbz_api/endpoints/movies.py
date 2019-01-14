@@ -43,8 +43,7 @@ class BotRequest(Resource):
             show_more_flag = False
         else:
             show_more_flag = True
-        print("positive movie -----------------------------")
-        print(data['pos_movie'])
+
         # Check if parent exists in database
         parentId, parentResponse = check_if_entry_exists(json.dumps(data))
 
