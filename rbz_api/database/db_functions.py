@@ -259,7 +259,7 @@ def set_backup(user_id, history, rating, favourite):
                 backupObject.rating_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             if favourite != None:
                 backupObject.favourite = favourite
-                backupObject.favourite_last = datetime.now
+                backupObject.favourite_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         db.session.commit()
         return True
 
