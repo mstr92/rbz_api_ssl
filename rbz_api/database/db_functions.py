@@ -239,16 +239,15 @@ def set_backup(user_id, history, rating, favourite):
     try:
         backupObject = BackupModel.query.filter(BackupModel.user_id == user_id).first()
         if backupObject == None:
-            # if history != None:
-            #     post = BackupModel(user_id, history, rating, favourite, None, None,
-            #                        datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-            # if rating != None:
-            #     post = BackupModel(user_id, history, rating, favourite, None,
-            #                        datetime.now().strftime('%Y-%m-%d %H:%M:%S'), None)
+            if history != None:
+                post = BackupModel(user_id, history, rating, favourite, None, None,
+                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            if rating != None:
+                post = BackupModel(user_id, history, rating, favourite, None,
+                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S'), None)
             if favourite != None:
                 post = BackupModel(user_id, history, rating, favourite,
                                    datetime.now().strftime('%Y-%m-%d %H:%M:%S'), None, None)
-            #
             db.session.add(post)
             db.session.flush()
         else:
@@ -260,7 +259,7 @@ def set_backup(user_id, history, rating, favourite):
                 backupObject.rating_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             if favourite != None:
                 backupObject.favourite = favourite
-                backupObject.favourite_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                backupObject.favourite_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S %Z')
         db.session.commit()
         return True
 
