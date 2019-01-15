@@ -3,6 +3,7 @@
 ##################################################################
 import time
 import logging
+import calendar
 from rbz_api.database import db
 from rbz_api.database.model import DataModel, DeviceModel, UserModel, BackupModel, VoteModel
 from datetime import datetime, timedelta
@@ -227,20 +228,27 @@ def check_user_password(username, password):
         print(e)
         return None
 
+def utc_to_local(utc_dt):
+    # get integer timestamp to avoid precision lost
+    timestamp = calendar.timegm(utc_dt.timetuple())
+    local_dt = datetime.fromtimestamp(timestamp)
+    assert utc_dt.resolution >= timedelta(microseconds=1)
+    return local_dt.replace(microsecond=utc_dt.microsecond)
 
 def set_backup(user_id, history, rating, favourite):
     try:
         backupObject = BackupModel.query.filter(BackupModel.user_id == user_id).first()
         if backupObject == None:
+            date = utc_to_local(datetime.now())
             if history != '':
                 post = BackupModel(user_id, history, rating, favourite, None, None,
-                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S %Z%z'))
+                                   date.strftime('%Y-%m-%d %H:%M:%S'))
             if rating != '':
                 post = BackupModel(user_id, history, rating, favourite, None,
-                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S %Z%z'), None)
+                                   date.strftime('%Y-%m-%d %H:%M:%S'), None)
             if history != '':
                 post = BackupModel(user_id, history, rating, favourite,
-                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S %Z%z'), None, None)
+                                   date.strftime('%Y-%m-%d %H:%M:%S'), None, None)
 
             db.session.add(post)
             db.session.flush()
