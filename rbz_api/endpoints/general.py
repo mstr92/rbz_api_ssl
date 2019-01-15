@@ -130,7 +130,7 @@ class DatabaseUser(Resource):
         Insert Backup Objects for user
         """
         data = request.json
-        id = data['user_id']
+        user_id = data['user_id']
         if data['history'] == '':
             history = None
         else:
@@ -146,12 +146,11 @@ class DatabaseUser(Resource):
         else:
             favourite = data['favourite']
 
-
-        modelObject = set_backup(id, history, rating, favourite)
-        if modelObject:
-            return 201
-        else:
-            return 401
+        # modelObject = set_backup(user_id, history, rating, favourite)
+        # if modelObject:
+        return 201
+        # else:
+        #     return 401
 
 @ns.route('/backup/history/<int:user_id>')
 class DatabaseUser(Resource):
