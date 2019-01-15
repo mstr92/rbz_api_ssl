@@ -239,7 +239,7 @@ def set_backup(user_id, history, rating, favourite):
     try:
         backupObject = BackupModel.query.filter(BackupModel.user_id == user_id).first()
         if backupObject == None:
-            date = utc_to_local(datetime.now())
+            date = utc_to_local(datetime.now)
             print("------------------------------------------------------")
             print(date)
             print(date.strftime('%Y-%m-%d %H:%M:%S'))
