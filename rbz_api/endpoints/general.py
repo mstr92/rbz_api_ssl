@@ -130,8 +130,24 @@ class DatabaseUser(Resource):
         Insert Backup Objects for user
         """
         data = request.json
+        id = data['user_id']
+        if data['history'] == '':
+            history = None
+        else:
+            history = data['history']
 
-        modelObject = set_backup(data['user_id'], data['history'], data['rating'], data['favourite'])
+        if data['rating'] == '':
+            rating = None
+        else:
+            rating = data['rating']
+
+        if data['favourite'] == '':
+            favourite = None
+        else:
+            favourite = data['favourite']
+
+
+        modelObject = set_backup(id, history, rating, favourite)
         if modelObject:
             return 201
         else:

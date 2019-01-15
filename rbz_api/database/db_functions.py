@@ -216,7 +216,7 @@ def check_user_password(username, password):
     try:
         userObject = UserModel.query.filter(UserModel.username == username).first()
         cipher_suite = Fernet(CRYPTO_KEY)
-        if(userObject != None):
+        if userObject != None:
             encrpyted_password = cipher_suite.decrypt(userObject.password.encode())
             if encrpyted_password == password:
                 return 201
@@ -239,26 +239,26 @@ def set_backup(user_id, history, rating, favourite):
     try:
         backupObject = BackupModel.query.filter(BackupModel.user_id == user_id).first()
         if backupObject == None:
-            if history != '':
+            if history != None:
                 post = BackupModel(user_id, history, rating, favourite, None, None,
-                                  None)
-            if rating != '':
+                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            if rating != None:
                 post = BackupModel(user_id, history, rating, favourite, None,
-                                   None, None)
-            if history != '':
+                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S'), None)
+            if history != None:
                 post = BackupModel(user_id, history, rating, favourite,
-                                  None, None, None)
+                                   datetime.now().strftime('%Y-%m-%d %H:%M:%S'), None, None)
 
             db.session.add(post)
             db.session.flush()
         else:
-            if history != '':
+            if history != None:
                 backupObject.history = history
                 backupObject.history_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            if rating != '':
+            if rating != None:
                 backupObject.rating = rating
                 backupObject.rating_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            if favourite != '':
+            if favourite != None:
                 backupObject.favourite = favourite
                 backupObject.favourite_last = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         db.session.commit()
