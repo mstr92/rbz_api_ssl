@@ -146,11 +146,11 @@ class DatabaseUser(Resource):
         else:
             favourite = data['favourite']
 
-        # modelObject = set_backup(user_id, history, rating, favourite)
-        # if modelObject:
-        return 201
-        # else:
-        #     return 401
+        modelObject = set_backup(user_id, history, rating, favourite)
+        if modelObject:
+            return 201
+        else:
+            return 401
 
 @ns.route('/backup/history/<int:user_id>')
 class DatabaseUser(Resource):
