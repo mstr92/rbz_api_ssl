@@ -234,13 +234,13 @@ def set_backup(user_id, history, rating, favourite):
         if backupObject == None:
             if history != '':
                 post = BackupModel(user_id, history, rating, favourite, None, None,
-                                   datetime.now().isoformat())
+                                   datetime.datetime.utcnow)
             if rating != '':
                 post = BackupModel(user_id, history, rating, favourite, None,
-                                   datetime.now().isoformat(), None)
+                                   datetime.datetime.utcnow, None)
             if history != '':
                 post = BackupModel(user_id, history, rating, favourite,
-                                   datetime.now().isoformat(), None, None)
+                                   datetime.datetime.utcnow, None, None)
 
             db.session.add(post)
             db.session.flush()
