@@ -132,7 +132,7 @@ class DatabaseMovie(Resource):
         """
         Return a list of movies corresponding to the given text
         """
-        log.logger.error(
+        log.error(
             "345Teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest")
         # Get Object from database with id
         modelObject = get_movie(text)
