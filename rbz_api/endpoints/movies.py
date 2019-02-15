@@ -12,9 +12,9 @@ from rbz_api.database.db_functions import *
 from flask import Response
 from functools import wraps
 
+logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
 ns = api.namespace('rbz/movies', description='Reddit Movie Thread')
-
 
 # Decorator function to check if API-Key is valid
 def require_appkey(view_function):
