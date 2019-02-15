@@ -11,7 +11,6 @@ from rbz_api.tasks.tasks import *
 from rbz_api.database.db_functions import *
 from flask import Response
 from functools import wraps
-from rbz_api.app import app
 
 log = logging.getLogger(__name__)
 ns = api.namespace('rbz/movies', description='Reddit Movie Thread')
@@ -151,8 +150,6 @@ class DatabasePerson(Resource):
         Return a list of persons corresponding to the given text
         """
 
-        app.logger.error(
-            "123Teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest")
         # Get Object from database with id
         modelObject = get_person(text)
         jsonResult  = json.dumps([dict(row) for row in modelObject])
