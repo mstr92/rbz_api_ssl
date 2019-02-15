@@ -31,6 +31,8 @@ api:
 nginx:
     restart: always
     build: ./nginx/
+    expose:
+      - 8008
     ports:
       - "8008:8008"
     links:
