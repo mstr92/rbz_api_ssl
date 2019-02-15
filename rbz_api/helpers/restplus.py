@@ -8,7 +8,6 @@ api = Api(version='1.0', title='rbz.io API', description='API for rbz.io')
 @api.errorhandler
 def default_error_handler(e):
     message = 'An unhandled exception occurred.'
-    log.exception("Teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeessssssssssssssssssssssssssssssssssssssssssssssssssst")
     log.exception(message)
 
     if not True:

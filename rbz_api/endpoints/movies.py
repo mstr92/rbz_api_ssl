@@ -147,7 +147,8 @@ class DatabasePerson(Resource):
         """
         Return a list of persons corresponding to the given text
         """
-        api.logger.error(
+
+        log.error(
             "Teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest")
         # Get Object from database with id
         modelObject = get_person(text)
