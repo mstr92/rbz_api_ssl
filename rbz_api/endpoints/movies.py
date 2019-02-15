@@ -132,8 +132,8 @@ class DatabaseMovie(Resource):
         """
         Return a list of movies corresponding to the given text
         """
-        log.error(
-            "345Teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest")
+        # log.error(
+        #     "345Teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest")
         # Get Object from database with id
         modelObject = get_movie(text)
         jsonResult  = json.dumps([dict(row) for row in modelObject])
