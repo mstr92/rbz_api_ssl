@@ -31,4 +31,4 @@
     - e.g. celery -A tasks.tasks worker -Q movies, games -B -l INFO
 
 ## Schematic API-flow
-![Api-Flow](https://github.com/mstr92/rbz_api/blob/master/api_service.PNG)
+![Api-Flow](https://github.com/mstr92/rbz_api_ssl/blob/master/api_structure.jpeg)
