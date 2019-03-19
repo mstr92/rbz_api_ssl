@@ -1,4 +1,5 @@
 # API for rbz.io
+- Part of the Master Thesis - Mobile Interactive Recommender Framework
 
 ## Commands:
 - Start docker: docker-compose up --build
@@ -9,6 +10,7 @@
 - SqlAlchemy
 - RabbitMQ
 - Celery
+- nginx
 
 ## User-Interfaces and User/Passwords:
 - Swagger UI : https://localhost:5000/api/
@@ -29,4 +31,4 @@
     - e.g. celery -A tasks.tasks worker -Q movies, games -B -l INFO
 
 ## Schematic API-flow
-![Api-Flow](https://github.com/mstr92/rbz_api/blob/master/api_flow.JPG)
+![Api-Flow](https://github.com/mstr92/rbz_api/blob/master/api_service.PNG)
