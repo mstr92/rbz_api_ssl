@@ -32,9 +32,9 @@ nginx:
     restart: always
     build: ./nginx/
     expose:
-      - 8008
+      - 8000
     ports:
-      - "8008:8008"
+      - "8000:8000"
     links:
       - api
 celery:
